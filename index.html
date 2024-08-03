@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Lasagna Helper</h1>
+  
+    <div class="container">
+      <h2>Cooking Status</h2>
+      <input id="timer" type="number" placeholder="Remaining time (minutes)">
+      <button onclick="checkCookingStatus()">Check Status</button>
+      <p id="statusOutput"></p>
+    </div>
+  
+    <div class="container">
+      <h2>Preparation Time</h2>
+      <input id="layers" type="text" placeholder="Layers (comma separated)">
+      <input id="prepTime" type="number" placeholder="Average time per layer (minutes)">
+      <button onclick="calculatePrepTime()">Calculate Time</button>
+      <p id="prepOutput"></p>
+    </div>
+  
+    <div class="container">
+      <h2>Quantities</h2>
+      <input id="quantitiesLayers" type="text" placeholder="Layers (comma separated)">
+      <button onclick="calculateQuantities()">Calculate Quantities</button>
+      <p id="quantitiesOutput"></p>
+    </div>
+  
+    <div class="container">
+      <h2>Add Secret Ingredient</h2>
+      <input id="friendIngredients" type="text" placeholder="Friend's Ingredients (comma separated)">
+      <input id="myIngredients" type="text" placeholder="My Ingredients (comma separated)">
+      <button onclick="addIngredient()">Add Ingredient</button>
+      <p id="ingredientOutput"></p>
+    </div>
+  
+    <div class="container">
+      <h2>Scale Recipe</h2>
+      <textarea id="recipe" placeholder="Recipe (JSON format)"></textarea>
+      <input id="newPortions" type="number" placeholder="New portions">
+      <button onclick="scaleRecipeForPortions()">Scale Recipe</button>
+      <p id="scaleOutput"></p>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
