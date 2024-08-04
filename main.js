@@ -65,3 +65,46 @@ function cookingStatus(remainingTime) {
     document.getElementById('scaleOutput').innerText = `Scaled Recipe: ${JSON.stringify(scaled, null, 2)}`;
   }
   
+
+  // Function to save the scaled recipe to local storage
+function saveScaledRecipe() {
+  const recipeName = prompt("Enter a name for the recipe:");
+  if (!recipeName) return alert("Recipe name cannot be empty!");
+
+  const scaledRecipeText = document.getElementById('scaleOutput').innerText;
+  if (!scaledRecipeText) return alert("No recipe to save!");
+
+  const scaledRecipe = JSON.parse(scaledRecipeText.replace('Scaled Recipe: ', ''));
+  let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || {};
+
+  savedRecipes[recipeName] = scaledRecipe;
+  localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+
+  alert(`Recipe "${recipeName}" saved successfully!`);
+}
+
+// Function to view saved recipes
+function viewSavedRecipes() {
+  const savedRecipesList = document.getElementById('savedRecipesList');
+  savedRecipesList.innerHTML = ''; // Clear previous list
+
+  const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || {};
+
+  for (const [name, recipe] of Object.entries(savedRecipes)) {
+    const li = document.createElement('li');
+    li.innerText = `${name}: ${JSON.stringify(recipe)}`;
+    savedRecipesList.appendChild(li);
+  }
+
+  if (Object.keys(savedRecipes).length === 0) {
+    savedRecipesList.innerHTML = '<li>No saved recipes found.</li>';
+  }
+}
+
+// Update the existing function to scale the recipe
+function scaleRecipeForPortions() {
+  const recipe = JSON.parse(document.getElementById('recipe').value);
+  const newPortions = parseInt(document.getElementById('newPortions').value);
+  const scaled = scaleRecipe(recipe, newPortions);
+  document.getElementById('scaleOutput').innerText = `Scaled Recipe: ${JSON.stringify(scaled, null, 2)}`;
+}
